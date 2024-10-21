@@ -23,6 +23,10 @@ db.init_app(app)
 @app.route('/')
 def index():
     return '<h1>Code challenge</h1>'
+@app.route('/restaurants', methods=['GET'])
+def get_restaurants():
+    restaurants = Restaurant.query.all()
+    return jsonify([restaurant.to_dict() for restaurant in restaurants]), 200
 
 
 if __name__ == '__main__':
